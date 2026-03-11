@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: gemini-tax-copilot
+    runtime: docker
+    plan: free # Free tier friendly
+    region: ohio # Default region
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false # Requires manual input in Render dashboard
+      - key: STREAMLIT_SERVER_PORT
+        value: 8501
+      - key: STREAMLIT_SERVER_ADDRESS
+        value: 0.0.0.0
+    healthCheckPath: /_stcore/health
+    dockerContext: .
+    dockerfilePath: Dockerfile
